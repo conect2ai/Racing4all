@@ -37,10 +37,9 @@ To use these scripts, you will need Python installed on your computer, as well a
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/](https://github.com/)[YOUR_USERNAME]/racing4all.git
+    git clone
     cd racing4all
     ```
-    *Replace `[YOUR_USERNAME]` with your GitHub username.*
 
 2.  **Install dependencies:**
     It is highly recommended to create a virtual environment (`venv`) before installing dependencies.
@@ -64,7 +63,7 @@ Each simulator has its own folder structure and scripts.
 2.  Open iRacing and start a test session.
 3.  Run the main acquisition script:
     ```bash
-    python iracing_data_acq.py
+    python read_iracing.py
     ```
 4.  Data will be displayed in the console or saved to the output file specified in the script.
 
@@ -75,7 +74,7 @@ Each simulator has its own folder structure and scripts.
 3.  Open ACC and start a test session.
 4.  Run the main acquisition script:
     ```bash
-    python acc_data_acq.py
+    python read_acc.py
     ```
 
 
