@@ -4,3 +4,6 @@ scipy
 numpy 
 scikit-learn
 matplotlib
+lightgbm
+requests
+shap
