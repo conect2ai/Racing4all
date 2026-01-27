@@ -8,4 +8,4 @@ lightgbm
 requests
 shap
 lazypredict
-google-colab
+folium
