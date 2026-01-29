@@ -1,35 +1,31 @@
 # =============================================================================
-# CONFIGURAÇÃO DE TELEMETRIA: SUMMIT POINT (MAIN CIRCUIT)
-# PROJETO DOUTORADO - ANÁLISE DE CONDUÇÃO
+# CONFIGURAÇÃO DE TELEMETRIA: SUMMIT POINT (UNIFICADA)
+# PROJETO DOUTORADO - SETORIZAÇÃO SIMPLIFICADA
 # =============================================================================
 
 CUSTOM_EDGES = [
     0.0,      # 00: Largada/Chegada
-    0.075,    # 01: Main Straight (Reta principal)
-    0.105,    # 02: T1 Braking Setup (Frenagem pesada da T1)
-    0.145,    # 03: T1 Apex/Exit (Ponto de rotação e saída)
-    0.215,    # 04: T2 (A "curva infinita" à direita)
-    0.315,    # 05: T3 (Esquerda técnica antes do Chute)
-    0.410,    # 06: T4 The Chute (Descida acentuada)
-    0.485,    # 07: T5 Carousel Entry (Entrada da ferradura)
-    0.585,    # 08: T6/T7 Carousel Mid (Manutenção de grip lateral)
-    0.680,    # 09: T8 Carousel Exit (Saída e tração)
-    0.780,    # 10: T9 (Curva rápida à direita sob a ponte)
-    0.915,    # 11: T10 Bridge Corner (Curva final para a reta)
-    1.0       # 12: Frontstretch / Finish
+    0.105,    # 01: Main Straight & Braking (Unificado)
+    0.215,    # 02: T1 Right Hander (Unificado T1 + T2)
+    0.315,    # 03: T3 (Left-hander)
+    0.410,    # 04: T4 (The Chute)
+    0.500,    # 05: T5 (Carousel Entry)
+    0.585,    # 06: T6/T7 (Carousel Mid)
+    0.670,    # 07: T8 (Carousel Exit)
+    0.780,    # 08: T9 (The Bridge)
+    0.915,    # 09: T10 (Final Turn)
+    1.0       # 10: Frontstretch
 ]
 
 SECTOR_NAMES = {
-    1: "Main Straight",
-    2: "T1 Braking Setup",
-    3: "T1 (Big Bend)",
-    4: "T2 (Right-hander)",
-    5: "T3 (Left-hander)",
-    6: "T4 (The Chute)",
-    7: "T5 (Carousel Entry)",
-    8: "T6/T7 (Carousel Mid)",
-    9: "T8 (Carousel Exit)",
-    10: "T9 (The Bridge)",
-    11: "T10 (Final Turn)",
-    12: "Frontstretch"
+    1: "Main Straight & Braking",
+    2: "T1 Right Hander",
+    3: "T3 (Left-hander)",
+    4: "T4 (The Chute)",
+    5: "T5 (Carousel Entry)",
+    6: "T6/T7 (Carousel Mid)",
+    7: "T8 (Carousel Exit)",
+    8: "T9 (The Bridge)",
+    9: "T10 (Final Turn)",
+    10: "Frontstretch"
 }
