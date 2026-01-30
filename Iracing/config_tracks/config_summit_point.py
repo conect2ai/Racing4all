@@ -3,6 +3,7 @@
 # PROJETO DOUTORADO - SETORIZAÇÃO SIMPLIFICADA
 # =============================================================================
 
+TRACK_NAME = "Summit Point - Main Circuit" # Nome oficial para os gráficos
 CUSTOM_EDGES = [
     0.0,      # 00: Largada/Chegada
     0.105,    # 01: Main Straight & Braking (Unificado)

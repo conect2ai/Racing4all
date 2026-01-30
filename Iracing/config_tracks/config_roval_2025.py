@@ -3,6 +3,7 @@
 # Foco: Isolamento da Frenagem Pesada e do New Hairpin (Curva em U)
 # =============================================================================
 
+TRACK_NAME = "Charlotte Roval 2025" # Nome oficial para os gráficos
 CUSTOM_EDGES = [
     0.0,      # 00: Largada/Chegada
     0.045,    # 01: T1 (Heartlands)
