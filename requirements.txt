@@ -10,3 +10,4 @@ shap
 lazypredict
 folium
 seaborn
+statsmodels
