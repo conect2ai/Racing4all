@@ -1,0 +1,15 @@
+============================================================
+1. VARIÁVEIS DE TELEMETRIA (LIVE DATA)
+============================================================
+Acesse no código como: ir['NomeDaVariavel']
+
+Erro ao listar telemetria: 'IRSDK' object has no attribute 'telemetry_vars'
+Dica: Tente usar print(ir.telemetry_vars) para ver a estrutura bruta.
+
+
+============================================================
+2. INFORMAÇÕES DE SESSÃO E METADADOS (YAML)
+============================================================
+Contém dados sobre Pista, Pilotos (Tomaz, Rodrigo, Morsinaldo) e Clima.
+Acesse como: ir['WeekendInfo']['TrackName'], etc.
+

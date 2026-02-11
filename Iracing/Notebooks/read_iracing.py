@@ -1,88 +1,79 @@
 import irsdk
 import time
 import pandas as pd
-import os
 from pathlib import Path
 
-# --- CONFIGURAÇÃO DE CAMINHOS (Atualizado para seu PC) ---
-PROJECT_ROOT = Path("C:/Users/PC/Documents/GitHub/Racing4all")
-DATA_DIR = PROJECT_ROOT / "Iracing" / "Data_Logs"
-DATA_DIR.mkdir(parents=True, exist_ok=True) # Cria a pasta se não existir
-
-# Nome do arquivo final
-EXCEL_PATH = DATA_DIR / "stint_telemetry_summary.xlsx"
+# --- CONFIGURAÇÃO ---
+CSV_PATH = Path("C:/Users/PC/Documents/GitHub/Racing4all/Iracing/Data_Logs/stint_telemetry.csv")
+CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 ir = irsdk.IRSDK()
 ir.startup()
 
 # Variáveis de controle
-last_processed_lap = -1
-fuel_at_lap_start = 0.0
+last_completed_lap = -1
+last_recorded_val = -1.0
 driver_name = "Conectando..."
-lap_results = [] # Lista para acumular os dados na memória
 
-print(f"🏁 Monitoramento iniciado. Os dados serão salvos em:\n{EXCEL_PATH}")
-
-def save_lap_to_excel(new_data):
-    """Adiciona a volta ao arquivo Excel existente ou cria um novo."""
-    df_new = pd.DataFrame([new_data])
-    
-    if not EXCEL_PATH.exists():
-        # Cria o arquivo pela primeira vez
-        df_new.to_excel(EXCEL_PATH, index=False)
-    else:
-        # Lê o existente, concatena e salva
-        df_old = pd.read_excel(EXCEL_PATH)
-        df_final = pd.concat([df_old, df_new], ignore_index=True)
-        df_final.to_excel(EXCEL_PATH, index=False)
-    
-    print(f"💾 Arquivo Excel atualizado com a Volta {new_data['Volta']}")
+print("🏎️ Monitoramento iniciado. Aguardando conexão...")
 
 try:
     while True:
         if ir.is_connected:
-            # Identificação do Piloto
+            # 1. Captura o nome do piloto (apenas se ainda não tiver)
             if driver_name == "Conectando...":
                 try:
                     idx = ir['DriverInfo']['DriverCarIdx']
                     driver_name = ir['DriverInfo']['Drivers'][idx]['UserName']
-                    print(f"👤 Piloto: {driver_name}")
-                except: pass
+                    print(f"✅ Piloto Identificado: {driver_name}")
+                except: 
+                    pass
 
-            current_lap = ir['Lap']
+            completed_laps = ir['LapCompleted']
             
-            # Quando a volta muda
-            if current_lap > last_processed_lap:
-                if last_processed_lap != -1:
-                    last_lap_time = ir['LapLastLapTime']
-                    incidents = ir['PlayerCarMyIncidentCount']
-                    fuel_now = ir['FuelLevel']
-                    consumption = fuel_at_lap_start - fuel_now
-                    
-                    if last_lap_time > 0:
-                        # Criar dicionário com os dados da volta
-                        data_row = {
-                            "Piloto": driver_name,
-                            "Volta": last_processed_lap,
-                            "Tempo_s": round(last_lap_time, 3),
-                            "Consumo_L": round(consumption, 3),
-                            "Incidentes": incidents,
-                            "Timestamp": time.strftime("%H:%M:%S")
-                        }
-                        
-                        # Salva no Excel instantaneamente
-                        save_lap_to_excel(data_row)
+            # 2. Lógica de fim de volta
+            if completed_laps > last_completed_lap:
                 
-                # Sincroniza para a nova volta
-                last_processed_lap = current_lap
-                fuel_at_lap_start = ir['FuelLevel']
-            
+                # Sincronismo: Aguarda o iRacing atualizar o tempo da última volta
+                new_time = ir['LapLastLapTime']
+                attempts = 0
+                
+                while new_time == last_recorded_val and attempts < 10:
+                    time.sleep(0.1)
+                    new_time = ir['LapLastLapTime']
+                    attempts += 1
+
+                if new_time > 0 and new_time != last_recorded_val:
+                    data_row = {
+                        "Timestamp": time.strftime("%H:%M:%S"),
+                        "Piloto": driver_name,  # Nome de volta ao log
+                        "Volta": completed_laps,
+                        "Tempo": round(new_time, 3),
+                        "Consumo": round(ir['FuelLevel'], 3),
+                        "Pista": ir['WeekendInfo']['TrackName']
+                    }
+                    
+                    # Salva no CSV
+                    df = pd.DataFrame([data_row])
+                    df.to_csv(CSV_PATH, mode='a', index=False, header=not CSV_PATH.exists())
+                    
+                    print(f"✅ Volta {completed_laps} registrada para {driver_name}: {new_time:.3f}s")
+                    
+                    last_recorded_val = new_time
+                    last_completed_lap = completed_laps
+
+            # Reset se o piloto sair do carro ou reiniciar a sessão
+            elif completed_laps < last_completed_lap:
+                last_completed_lap = completed_laps
+                last_recorded_val = -1.0
+
             time.sleep(0.1)
         else:
             driver_name = "Conectando..."
+            last_completed_lap = -1
             time.sleep(2)
 
 except KeyboardInterrupt:
-    print("\n🛑 Monitoramento encerrado. Todos os dados foram salvos.")
+    print("\n🛑 Monitoramento encerrado pelo usuário.")
 finally:
     ir.shutdown()
