@@ -1,0 +1,43 @@
+Session,Driver,Track,Stint,Variable,Label,N_Laps,ADF_Statistic,ADF_p_value,ADF_Lags,ADF_Crit_1pct,ADF_Stationary,KPSS_Statistic,KPSS_p_value,KPSS_Lags,KPSS_Crit_5pct,KPSS_Stationary,Verdict
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,LapTime_s,Lap Time (s),36,-1.5216,0.821611,2.0,-4.2629,False,0.1304,0.078922,3.0,0.146,True,Trend-Stationary
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,Mean_TotalG,Mean Total G-Force (G),36,-4.8979,0.000314,0.0,-4.2438,True,0.11,0.1,2.0,0.146,True,Stationary
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,Std_TotalG,Std Dev Total G-Force (G),36,-5.6727,1e-05,1.0,-4.253,True,0.2303,0.01,15.0,0.146,False,Difference-Stationary
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,Mean_Speed_KPH,Mean Speed (km/h),36,-1.2783,0.893191,2.0,-4.2629,False,0.1334,0.073413,3.0,0.146,True,Trend-Stationary
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,Mean_Throttle_Pct,Mean Throttle (%),36,-4.628,0.000925,0.0,-4.2438,True,0.1403,0.060476,2.0,0.146,True,Stationary
+Driver A | charlotte_roval_2025 | stint_2,Driver A,charlotte_roval_2025,stint_2,Mean_Brake_Pct,Mean Brake (%),36,-3.9444,0.010532,7.0,-4.3245,True,0.0547,0.1,1.0,0.146,True,Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,LapTime_s,Lap Time (s),25,-4.2446,0.00383,0.0,-4.395,True,0.0642,0.1,0.0,0.146,True,Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,Mean_TotalG,Mean Total G-Force (G),25,-6.1061,1e-06,6.0,-4.5725,True,0.1791,0.023856,2.0,0.146,False,Difference-Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,Std_TotalG,Std Dev Total G-Force (G),25,0.082,0.994975,9.0,-4.7284,False,0.5,0.01,24.0,0.146,False,Non-Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,Mean_Speed_KPH,Mean Speed (km/h),25,-4.2823,0.003352,0.0,-4.395,True,0.0479,0.1,1.0,0.146,True,Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,Mean_Throttle_Pct,Mean Throttle (%),25,-4.3984,0.002203,0.0,-4.395,True,0.0911,0.1,1.0,0.146,True,Stationary
+Driver B | charlotte_roval_2025 | stint_1,Driver B,charlotte_roval_2025,stint_1,Mean_Brake_Pct,Mean Brake (%),25,-1.8586,0.675829,6.0,-4.5725,False,0.0896,0.1,3.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,LapTime_s,Lap Time (s),9,-3.2123,0.081976,0.0,-5.7966,False,0.0943,0.1,1.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,Mean_TotalG,Mean Total G-Force (G),9,-3.2554,0.073913,0.0,-5.7966,False,0.0865,0.1,0.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,Std_TotalG,Std Dev Total G-Force (G),9,-2.8362,0.183962,0.0,-5.7966,False,0.1108,0.1,2.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,Mean_Speed_KPH,Mean Speed (km/h),9,-2.6444,0.259875,0.0,-5.7966,False,0.0884,0.1,0.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,Mean_Throttle_Pct,Mean Throttle (%),9,-2.1038,0.543941,0.0,-5.7966,False,0.0779,0.1,0.0,0.146,True,Trend-Stationary
+Driver B | summit_point | stint_1,Driver B,summit_point,stint_1,Mean_Brake_Pct,Mean Brake (%),9,-5.1339,0.000117,0.0,-5.7966,True,0.3285,0.01,6.0,0.146,False,Difference-Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,LapTime_s,Lap Time (s),18,-1.9395,0.63395,5.0,-4.9882,False,0.0654,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,Mean_TotalG,Mean Total G-Force (G),18,-2.1367,0.525487,6.0,-5.1175,False,0.1121,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,Std_TotalG,Std Dev Total G-Force (G),18,-6.2536,1e-06,5.0,-4.9882,True,0.0601,0.1,0.0,0.146,True,Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,Mean_Speed_KPH,Mean Speed (km/h),18,-3.4348,0.046906,2.0,-4.7284,True,0.0554,0.1,1.0,0.146,True,Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,Mean_Throttle_Pct,Mean Throttle (%),18,-3.1809,0.088277,0.0,-4.617,False,0.0845,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_1,Driver C,charlotte_roval_2025,stint_1,Mean_Brake_Pct,Mean Brake (%),18,-2.836,0.184033,4.0,-4.8844,False,0.5,0.01,17.0,0.146,False,Non-Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,LapTime_s,Lap Time (s),15,-3.8012,0.016498,0.0,-4.7994,True,0.0731,0.1,0.0,0.146,True,Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,Mean_TotalG,Mean Total G-Force (G),15,-5.2841,6.1e-05,0.0,-4.7994,True,0.1123,0.1,3.0,0.146,True,Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,Std_TotalG,Std Dev Total G-Force (G),15,-2.8092,0.193574,4.0,-5.2825,False,0.0807,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,Mean_Speed_KPH,Mean Speed (km/h),15,-2.2717,0.449646,4.0,-5.2825,False,0.0739,0.1,0.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,Mean_Throttle_Pct,Mean Throttle (%),15,-2.6725,0.247673,4.0,-5.2825,False,0.056,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | charlotte_roval_2025 | stint_2,Driver C,charlotte_roval_2025,stint_2,Mean_Brake_Pct,Mean Brake (%),15,-1.3024,0.887336,4.0,-5.2825,False,0.1419,0.057609,5.0,0.146,True,Trend-Stationary
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,LapTime_s,Lap Time (s),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,Mean_TotalG,Mean Total G-Force (G),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,Std_TotalG,Std Dev Total G-Force (G),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,Mean_Speed_KPH,Mean Speed (km/h),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,Mean_Throttle_Pct,Mean Throttle (%),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_1,Driver C,summit_point,stint_1,Mean_Brake_Pct,Mean Brake (%),4,,,,,,,,,,,N/A
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,LapTime_s,Lap Time (s),21,-4.2592,0.003638,0.0,-4.4993,True,0.063,0.1,0.0,0.146,True,Stationary
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,Mean_TotalG,Mean Total G-Force (G),21,-3.7124,0.021556,1.0,-4.5336,True,0.091,0.1,1.0,0.146,True,Stationary
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,Std_TotalG,Std Dev Total G-Force (G),21,-3.7965,0.016737,0.0,-4.4993,True,0.1111,0.1,0.0,0.146,True,Stationary
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,Mean_Speed_KPH,Mean Speed (km/h),21,-4.2888,0.003275,0.0,-4.4993,True,0.0651,0.1,0.0,0.146,True,Stationary
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,Mean_Throttle_Pct,Mean Throttle (%),21,-2.903,0.161242,3.0,-4.617,False,0.1153,0.1,1.0,0.146,True,Trend-Stationary
+Driver C | summit_point | stint_2,Driver C,summit_point,stint_2,Mean_Brake_Pct,Mean Brake (%),21,-1.9227,0.642842,7.0,-4.8844,False,0.0658,0.1,2.0,0.146,True,Trend-Stationary

@@ -1,0 +1,8 @@
+Track,Car,Driver,Stint,N_Valid_Laps,Best_Lap_s,Avg_Lap_s,Std_Lap_s,Avg_TotalG,Avg_Std_G,Avg_Max_G,Avg_Speed_KPH,Avg_Throttle_Pct,Avg_Brake_Pct
+charlotte_roval_2025,Mazda MX-5,Driver B,stint_1,25,96.733,97.875,0.671,0.7646,0.442,2.8789,132.74,74.67,5.32
+charlotte_roval_2025,Mazda MX-5,Driver C,stint_1,18,99.0,106.435,8.294,0.7507,0.5007,10.7103,124.01,70.77,5.08
+charlotte_roval_2025,Mazda MX-5,Driver C,stint_2,15,98.417,105.916,7.483,0.7459,0.5219,12.6988,123.41,71.67,5.25
+charlotte_roval_2025,Mazda MX-5,Driver A,stint_2,36,95.483,97.567,2.281,0.7725,0.4616,4.3161,133.62,74.36,4.45
+summit_point,Toyota GR86,Driver B,stint_1,9,79.767,80.256,0.276,0.7589,0.5435,2.6459,143.35,78.57,6.33
+summit_point,Toyota GR86,Driver C,stint_1,4,82.5,83.392,0.642,0.7161,0.5086,2.3667,137.97,72.13,6.16
+summit_point,Toyota GR86,Driver C,stint_2,21,80.95,82.813,1.465,0.741,0.5224,2.3256,139.25,74.31,5.93
