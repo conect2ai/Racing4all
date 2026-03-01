@@ -1,0 +1,24 @@
+Enviando 14 setores para análise do gemma3:12b...
+"### Curva 12: Bus Stop Apex (Δt = +0.353542859634814s)"
+
+Frenagem Ineficiente: Muita pressão de freio para pouca desaceleração. Verifique se está travando rodas ou sobrecarregando o ABS.
+Pico de frenagem excessivo: você está 'ancorando' demais o carro. Tente aplicar menos pressão máxima para manter a suspensão mais estável.
+
+"### Curva 7: New Hairpin (Δt = +0.32439079970403384s)"
+
+Rotação Atrasada: Você atingiu o pico de rotação após o ápice da curva. Tente rotacionar o carro mais cedo na entrada.
+Este setor é um legado da saída ruim da curva anterior. Concentre-se em melhorar a entrada na curva 6.
+
+"### Curva 6: Hairpin Setup (Δt = +0.12209701582113297s)"
+
+Pico de frenagem excessivo: você está 'ancorando' demais o carro. Tente aplicar menos pressão máxima para manter a suspensão mais estável.
+Conflito Acelerador x Volante: exigindo tração com o carro ainda muito virado. Libere o volante para ganhar grip.
+
+"### Curva 16: Final Chicane Entry (Δt = +0.09644277908543586s)"
+
+Pico de frenagem excessivo: você está 'ancorando' demais o carro. Tente aplicar menos pressão máxima para manter a suspensão mais estável.
+Este setor é um legado da saída ruim da curva anterior. Concentre-se em melhorar a entrada na curva 15.
+
+"### Curva 5: T5/T6 Transition (Δt = +0.09328315655426778s)"
+
+Excesso de movimento no volante (Steer RMS alto): isso gera arraste nos pneus e tira sua velocidade de contorno. Tente ser mais suave
