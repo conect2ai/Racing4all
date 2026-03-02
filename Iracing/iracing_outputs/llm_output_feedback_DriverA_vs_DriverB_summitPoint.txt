@@ -1,0 +1,14 @@
+- ### Curva 8: T9 (The Bridge) (Δt = +0.201291s)
+    * Hesitação no acelerador na saída: A aplicação de potência está irregular. Concentre-se em uma aplicação suave e progressiva para maximizar a tração.
+- ### Curva 5: T5 (Carousel Entry) (Δt = +0.156467s)
+    * Frenagem: Analise a técnica de frenagem para otimizar a desaceleração.
+    * Falta de Trail Braking: Soltar o freio cedo demais antes de virar está prejudicando a entrada na curva. Tente manter a pressão no freio enquanto vira o volante.
+- ### Curva 2: T1 Right Hander (Δt = +0.100124s)
+    * Conflito Acelerador x Volante: Exigir tração com o carro ainda muito virado está limitando a velocidade. Libere o volante para permitir que os pneus recuperem a aderência.
+- ### Curva 6: T6/T7 (Carousel Mid) (Δt = +0.093494s)
+    * Excesso de movimento no volante (Steer RMS alto): Movimentos bruscos no volante estão causando arrasto nos pneus e diminuindo a velocidade na curva. Seja mais suave e preciso.
+    * Conflito Acelerador x Volante: Exigir tração com o carro ainda muito virado está limitando a velocidade. Libere o volante para permitir que os pneus recuperem a aderência.
+- ### Curva 4: T4 (The Chute) (Δt = +0.087444s)
+    * Rotação Atrasada: Você está atingindo o pico de rotação após o ápice da curva. Tente iniciar a rotação mais cedo para otimizar a trajetória.
+    * Frenagem Ineficiente: A pressão excessiva nos freios pode estar travando as rodas ou sobrecarregando o ABS. Ajuste a técnica de frenagem para uma desaceleração mais eficiente.
+- ### Curva 3: T3 (Left-hander) (Δt = +0.063905s)
