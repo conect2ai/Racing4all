@@ -1,0 +1,28 @@
+================================================================= ENTROPIA MÉDIA GLOBAL — TotalAccel_G Pista: summit_point  |  Range: (np.float64(0.05055452949897985), np.float64(1.8432915236528458)) ================================================================= 
+Driver       Stint        H_mean (bits)    Laps válidas ---------------------------------------------------------- 
+[OK] Loaded: toyotagr86_summit summit raceway 2026-01-27 22-21-35.ibt Driver B     stint_1      1.7882           9 
+[OK] Loaded: toyotagr86_summit summit raceway 2026-01-28 16-03-13(Morsinaldo).ibt Driver C     stint_1      1.3682           4 
+[OK] Loaded: toyotagr86_summit summit raceway 2026-01-30 08-56-59(Morsinaldo).ibt Driver C     stint_2      2.4616           21 
+[OK] Loaded: toyotagr86_summit summit raceway 2026-03-01 21-47-29(Rodrigo).ibt
+[OK] Loaded: toyotagr86_summit summit raceway 2026-03-01 22-00-14(Rodrigo).ibt Driver A     stint_1      1.8662           14 =================================================================
+
+Para Charlotte
+
+=================================================================
+ENTROPIA MÉDIA GLOBAL — TotalAccel_G
+Pista: charlotte_roval_2025  |  Range: (np.float64(0.014733533699979193), np.float64(1.8273059374449718))
+=================================================================
+Driver       Stint        H_mean (bits)    Laps válidas
+----------------------------------------------------------
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2025-11-26 13-56-41.ibt
+Driver B     stint_1      2.2800           25
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2026-03-01 17-16-27.ibt
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2026-03-01 16-20-04.ibt
+Driver B     stint_2      1.5996           5
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2026-01-27 16-13-55(Morsinaldo).ibt
+Driver C     stint_1      2.8097           18
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2026-01-28 15-24-41(Morsinaldo).ibt
+Driver C     stint_2      2.6929           14
+[OK] Loaded: mx5 mx52016_charlotte 2025 roval2025 2026-02-08 15-06-22(Rodrigo).ibt
+Driver A     stint_1      2.6749           36
+=================================================================
