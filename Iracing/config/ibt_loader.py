@@ -118,7 +118,7 @@ def load_stint(
     if isinstance(paths, (str, Path)):
         paths = [paths]
 
-    # Accept str or Path — normalise everything to Path
+    # Normalise: accept str or Path in any mix
     paths = [Path(p) for p in paths]
 
     frames: list[pd.DataFrame] = []
@@ -261,8 +261,21 @@ def build_lap_validity_table(
         lap_time = _lap_time_seconds(gs)
 
         if has_gps:
-            gps_ok = gs["Lat"].notna() & gs["Lon"].notna()
-            gps_coverage = float(gps_ok.mean())
+            # Spatial coverage: fraction of LapDistPct bins [0,1] that have
+            # at least one valid GPS sample.  A lap that is missing rows at
+            # the IBT file boundary will show 0 samples in those bins even
+            # though all *existing* rows have valid Lat/Lon — the row-level
+            # notna() fraction would return 1.0 and miss the gap entirely.
+            gps_rows = gs[gs["Lat"].notna() & gs["Lon"].notna()]
+            if gps_rows.empty:
+                gps_coverage = 0.0
+            else:
+                n_bins   = 100
+                bins     = np.linspace(0.0, 1.0, n_bins + 1)
+                covered  = np.histogram(
+                    gps_rows["LapDistPct"].clip(0.0, 1.0), bins=bins
+                )[0]
+                gps_coverage = float((covered > 0).mean())
         else:
             gps_coverage = 1.0   # not penalised when GPS channels absent
 
@@ -438,20 +451,11 @@ def select_reference_laps(
     fastest_row = valid_rows.sort_values("LapTime_s").iloc[0]
     fastest_lap = int(fastest_row["Lap"])
 
-    # GPS reference: lap with highest GpsCoverage_Pct (any lap, not just valid),
-    # so the track geometry is always complete even when the fastest lap has
-    # a data gap at the IBT file boundary.
-    GPS_COL = "GpsCoverage_Pct"
-    if GPS_COL in validity.columns:
-        gps_lap = int(
-            validity.sort_values(GPS_COL, ascending=False).iloc[0]["Lap"]
-        )
-        gps_cov = float(
-            validity.loc[validity["Lap"] == gps_lap, GPS_COL].values[0]
-        )
+    # GPS reference: prefer a valid lap with full coverage; fall back to any lap
+    if "GPS_Coverage" in validity.columns:
+        gps_lap = int(validity.sort_values("GPS_Coverage", ascending=False).iloc[0]["Lap"])
     else:
-        gps_lap = fastest_lap   # graceful fallback if column absent
-        gps_cov = float("nan")
+        gps_lap = fastest_lap  # graceful fallback if column absent
 
     if verbose:
         tag = f"[{driver_name}]" if driver_name else ""
@@ -464,15 +468,13 @@ def select_reference_laps(
         print(f"  🏁 Fastest lap   : Lap {fastest_lap}  "
               f"({fastest_row['LapTime_s']:.3f}s)")
         print(f"  🗺  GPS reference : Lap {gps_lap}  "
-              f"(GPS coverage {gps_cov:.1%})")
+              f"(GPS coverage {validity.loc[validity['Lap']==gps_lap, 'GPS_Coverage'].values[0]:.1%})")
 
         if not invalid_rows.empty:
             print(f"\n  ❌ Invalidated laps ({len(invalid_rows)}):")
             for _, r in invalid_rows.iterrows():
-                mins = int(r['LapTime_s'] // 60)
-                secs = r['LapTime_s'] % 60
-                print(f"     Lap {int(r['Lap']):>3}  {mins:02d}:{secs:06.3f}"
-                      f"  →  {r.get('InvalidReason', '—')}")
+                print(f"     Lap {int(r['Lap']):>3}  {r['LapTime_s']:>8.3f}s  "
+                      f"→  {r['InvalidReason']}")
         print(f"{'─'*55}\n")
 
     return fastest_lap, gps_lap
