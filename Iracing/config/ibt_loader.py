@@ -206,29 +206,23 @@ def build_lap_validity_table(
     min_lap_time_s:     float = 45.0,
     max_lap_time_s:     float = 120.0,
 ) -> pd.DataFrame:
-    """
-    Return a per-lap validity table (columns: Lap, LapTime_s, CompletedPct,
-    FracLowSpeed, MaxSpeed_kph, Valid).
-
-    Validity criteria
-    -----------------
-    1. LapDistPct >= min_completed_pct  (nearly complete lap)
-    2. Lap not in manual_invalid
-    3. Fraction of samples below low_speed_kph <= 0.25
-    4. Max speed >= min_max_speed_kph   (rules out tow laps)
-    5. LapTime_s in [min_lap_time_s, max_lap_time_s]
-    6. IQR-based outlier removal (applied only when >= 5 valid laps exist)
-    """
     manual_invalid = manual_invalid or set()
     rows = []
 
     for lap, grp in df.groupby("Lap", sort=True):
         gs       = grp.sort_values("SessionTime").copy()
         lap_time = _lap_time_seconds(gs)
+
+        # GPS coverage: LapDistPct range using only rows with valid coordinates
+        gps_df = gs.dropna(subset=["Lat", "Lon"])
+        gps_cov = float(gps_df["LapDistPct"].max() - gps_df["LapDistPct"].min()) \
+                  if len(gps_df) > 1 else 0.0
+
         rows.append({
             "Lap":          int(lap),
             "LapTime_s":    float(lap_time),
             "CompletedPct": float(gs["LapDistPct"].max()),
+            "GPS_Coverage": gps_cov,
             "FracLowSpeed": float((gs["Speed_KPH"] < low_speed_kph).mean()),
             "MaxSpeed_kph": float(gs["Speed_KPH"].max()),
         })
@@ -252,6 +246,28 @@ def build_lap_validity_table(
         hi      = float(q3 + 1.5 * iqr)
         lo      = max(0.0, float(q1 - 1.5 * iqr))
         lap_df.loc[:, "Valid"] &= lap_df["LapTime_s"].between(lo, hi)
+
+    # ── InvalidReason: human-readable explanation for each rejected lap ────
+    def _reason(row) -> str:
+        if row["Valid"]:
+            return "OK"
+        reasons = []
+        if row["Lap"] in manual_invalid:
+            reasons.append("manual_exclusion")
+        if row["CompletedPct"] < min_completed_pct:
+            reasons.append(f"incomplete_lap({row['CompletedPct']:.1%})")
+        if row["LapTime_s"] < min_lap_time_s:
+            reasons.append(f"too_short({row['LapTime_s']:.1f}s)")
+        if row["LapTime_s"] > max_lap_time_s:
+            reasons.append(f"too_long({row['LapTime_s']:.1f}s)")
+        if row["FracLowSpeed"] > 0.25:
+            reasons.append(f"low_speed({row['FracLowSpeed']:.0%})")
+        if row["MaxSpeed_kph"] < min_max_speed_kph:
+            reasons.append(f"max_spd_low({row['MaxSpeed_kph']:.0f}kph)")
+        return " | ".join(reasons) if reasons else "iqr_outlier"
+
+    lap_df["InvalidReason"] = lap_df.apply(_reason, axis=1)
+    # ──────────────────────────────────────────────────────────────────────
 
     return lap_df
 
@@ -323,3 +339,54 @@ def load_and_prepare_stint(
     df_valid = assign_sectors(df_valid, edges)
 
     return df_valid, validity
+
+def select_reference_laps(
+    df: pd.DataFrame,
+    validity: pd.DataFrame,
+    driver_name: str = "",
+    verbose: bool = True,
+) -> tuple[int, int]:
+    """
+    Returns (fastest_lap_id, gps_reference_lap_id).
+
+    fastest_lap     : lowest LapTime_s among Valid laps.
+    gps_reference   : lap with widest GPS_Coverage (all laps, not just Valid),
+                      ensuring the track geometry is complete even when the
+                      fastest lap straddles an IBT file boundary.
+
+    Prints a formatted selection report when verbose=True.
+    """
+    valid_rows = validity[validity["Valid"]]
+    if valid_rows.empty:
+        raise RuntimeError(f"[{driver_name}] No valid laps found.")
+
+    fastest_row = valid_rows.sort_values("LapTime_s").iloc[0]
+    fastest_lap = int(fastest_row["Lap"])
+
+    # GPS reference: prefer a valid lap with full coverage; fall back to any lap
+    if "GPS_Coverage" in validity.columns:
+        gps_lap = int(validity.sort_values("GPS_Coverage", ascending=False).iloc[0]["Lap"])
+    else:
+        gps_lap = fastest_lap  # graceful fallback if column absent
+
+    if verbose:
+        tag = f"[{driver_name}]" if driver_name else ""
+        invalid_rows = validity[~validity["Valid"]]
+
+        print(f"\n{'─'*55}")
+        print(f"  Lap Selection Report {tag}")
+        print(f"{'─'*55}")
+        print(f"  ✅ Valid laps    : {sorted(valid_rows['Lap'].tolist())}")
+        print(f"  🏁 Fastest lap   : Lap {fastest_lap}  "
+              f"({fastest_row['LapTime_s']:.3f}s)")
+        print(f"  🗺  GPS reference : Lap {gps_lap}  "
+              f"(GPS coverage {validity.loc[validity['Lap']==gps_lap, 'GPS_Coverage'].values[0]:.1%})")
+
+        if not invalid_rows.empty:
+            print(f"\n  ❌ Invalidated laps ({len(invalid_rows)}):")
+            for _, r in invalid_rows.iterrows():
+                print(f"     Lap {int(r['Lap']):>3}  {r['LapTime_s']:>8.3f}s  "
+                      f"→  {r['InvalidReason']}")
+        print(f"{'─'*55}\n")
+
+    return fastest_lap, gps_lap
