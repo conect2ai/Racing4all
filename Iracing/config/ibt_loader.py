@@ -115,8 +115,11 @@ def load_stint(
     SessionTime offset strategy
         max_session_time[file_n] + median_sample_interval  →  base for file_n+1.
     """
-    if isinstance(paths, Path):
+    if isinstance(paths, (str, Path)):
         paths = [paths]
+
+    # Accept str or Path — normalise everything to Path
+    paths = [Path(p) for p in paths]
 
     frames: list[pd.DataFrame] = []
     lap_offset  = 0
@@ -164,7 +167,8 @@ def load_stint(
 
 def basic_clean_and_units(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Drop rows with null keys, sort, convert units, and add derived channels.
+    Drop infinities, drop rows missing key columns, sort, convert units,
+    normalise LapDistPct and add derived channels.
 
     Added columns
     -------------
@@ -172,21 +176,44 @@ def basic_clean_and_units(df: pd.DataFrame) -> pd.DataFrame:
     LatAccel_G, LongAccel_G, TotalAccel_G
     """
     df = df.copy()
-    df.dropna(subset=["SessionTime", "Lap", "LapDistPct"], inplace=True)
+
+    # Replace ±inf before any numeric operation
+    df.replace([np.inf, -np.inf], np.nan, inplace=True)
+
+    # ── Unit conversions (before dropna so columns always exist) ─────────
+    if "Speed_KPH" not in df.columns and "Speed" in df.columns:
+        df["Speed_KPH"]    = df["Speed"]    * 3.6
+    if "Throttle_Pct" not in df.columns and "Throttle" in df.columns:
+        df["Throttle_Pct"] = df["Throttle"] * 100.0
+    if "Brake_Pct" not in df.columns and "Brake" in df.columns:
+        df["Brake_Pct"]    = df["Brake"]    * 100.0
+
+    # ── Normalise LapDistPct (iRacing sometimes outputs 0–100) ───────────
+    if "LapDistPct" in df.columns:
+        mx = df["LapDistPct"].max()
+        if pd.notna(mx) and mx > 1.5:
+            df["LapDistPct"] = df["LapDistPct"] / 100.0
+
+    # ── Drop rows missing structural columns ─────────────────────────────
+    required = [c for c in
+                ["Lap", "SessionTime", "LapDistPct", "Speed_KPH",
+                 "Throttle_Pct", "Brake_Pct"]
+                if c in df.columns]
+    df.dropna(subset=required, inplace=True)
+
     df.sort_values(["Lap", "SessionTime"], inplace=True)
     df.reset_index(drop=True, inplace=True)
 
-    df["Speed_KPH"]    = df["Speed"]    * 3.6
-    df["Throttle_Pct"] = df["Throttle"] * 100.0
-    df["Brake_Pct"]    = df["Brake"]    * 100.0
-
+    # ── G-force derived channels ─────────────────────────────────────────
     _g = 9.81
-    df["LatAccel_G"]   = df["LatAccel"]  / _g
-    df["LongAccel_G"]  = df["LongAccel"] / _g
-    df["TotalAccel_G"] = np.sqrt(df["LatAccel_G"] ** 2 + df["LongAccel_G"] ** 2)
+    if "LatAccel" in df.columns:
+        df["LatAccel_G"]  = df["LatAccel"]  / _g
+    if "LongAccel" in df.columns:
+        df["LongAccel_G"] = df["LongAccel"] / _g
+    if "LatAccel_G" in df.columns and "LongAccel_G" in df.columns:
+        df["TotalAccel_G"] = np.sqrt(df["LatAccel_G"]**2 + df["LongAccel_G"]**2)
 
     return df
-
 
 # ═════════════════════════════════════════════════════════════════════════════
 # Lap validity filter
@@ -202,72 +229,120 @@ def build_lap_validity_table(
     manual_invalid:     set   | None = None,
     low_speed_kph:      float = 10.0,
     min_max_speed_kph:  float = 60.0,
-    min_completed_pct:  float = 0.98,
+    min_completed_pct:  float = 0.995,
+    max_start_pct:      float = 0.02,
     min_lap_time_s:     float = 45.0,
     max_lap_time_s:     float = 120.0,
+    min_gps_coverage:   float = 1.0,    # 1.0 = 100 % of rows must have Lat+Lon
+    verbose:            bool  = True,
 ) -> pd.DataFrame:
+    """
+    Return a per-lap validity table with columns:
+        Lap, LapTime_s, StartPct, CompletedPct,
+        FracLowSpeed, MaxSpeed_kph, GpsCoverage_Pct, Valid, InvalidReason
+
+    Validity criteria (all must pass)
+    ----------------------------------
+    1. StartPct       <= max_start_pct          (lap started at S/F)
+    2. CompletedPct   >= min_completed_pct       (nearly full lap)
+    3. Lap not in manual_invalid
+    4. FracLowSpeed   <= 0.25                    (not a slow/tow lap)
+    5. MaxSpeed_kph   >= min_max_speed_kph
+    6. LapTime_s      in [min_lap_time_s, max_lap_time_s]
+    7. GpsCoverage_Pct >= min_gps_coverage       (complete GPS trace)
+    8. IQR refinement  (applied when >= 5 valid laps exist)
+    """
     manual_invalid = manual_invalid or set()
+    has_gps = "Lat" in df.columns and "Lon" in df.columns
     rows = []
 
     for lap, grp in df.groupby("Lap", sort=True):
         gs       = grp.sort_values("SessionTime").copy()
         lap_time = _lap_time_seconds(gs)
 
-        # GPS coverage: LapDistPct range using only rows with valid coordinates
-        gps_df = gs.dropna(subset=["Lat", "Lon"])
-        gps_cov = float(gps_df["LapDistPct"].max() - gps_df["LapDistPct"].min()) \
-                  if len(gps_df) > 1 else 0.0
+        if has_gps:
+            gps_ok = gs["Lat"].notna() & gs["Lon"].notna()
+            gps_coverage = float(gps_ok.mean())
+        else:
+            gps_coverage = 1.0   # not penalised when GPS channels absent
 
         rows.append({
-            "Lap":          int(lap),
-            "LapTime_s":    float(lap_time),
-            "CompletedPct": float(gs["LapDistPct"].max()),
-            "GPS_Coverage": gps_cov,
-            "FracLowSpeed": float((gs["Speed_KPH"] < low_speed_kph).mean()),
-            "MaxSpeed_kph": float(gs["Speed_KPH"].max()),
+            "Lap":              int(lap),
+            "LapTime_s":        float(lap_time),
+            "StartPct":         float(gs["LapDistPct"].min()),
+            "CompletedPct":     float(gs["LapDistPct"].max()),
+            "FracLowSpeed":     float((gs["Speed_KPH"] < low_speed_kph).mean()),
+            "MaxSpeed_kph":     float(gs["Speed_KPH"].max()),
+            "GpsCoverage_Pct":  gps_coverage,
         })
 
     lap_df = pd.DataFrame(rows).sort_values("Lap").reset_index(drop=True)
 
     valid = (
-        (lap_df["CompletedPct"] >= min_completed_pct)
+        (lap_df["StartPct"]        <= max_start_pct)
+        & (lap_df["CompletedPct"]  >= min_completed_pct)
         & (~lap_df["Lap"].isin(manual_invalid))
-        & (lap_df["FracLowSpeed"] <= 0.25)
-        & (lap_df["MaxSpeed_kph"] >= min_max_speed_kph)
-        & (lap_df["LapTime_s"]    >= min_lap_time_s)
-        & (lap_df["LapTime_s"]    <= max_lap_time_s)
+        & (lap_df["FracLowSpeed"]  <= 0.25)
+        & (lap_df["MaxSpeed_kph"]  >= min_max_speed_kph)
+        & (lap_df["LapTime_s"]     >= min_lap_time_s)
+        & (lap_df["LapTime_s"]     <= max_lap_time_s)
+        & (lap_df["GpsCoverage_Pct"] >= min_gps_coverage)
     )
     lap_df["Valid"] = valid
 
-    # IQR refinement
+    # ── IQR refinement ────────────────────────────────────────────────────
     if lap_df["Valid"].sum() >= 5:
         q1, q3 = lap_df.loc[lap_df["Valid"], "LapTime_s"].quantile([0.25, 0.75])
         iqr     = float(q3 - q1)
         hi      = float(q3 + 1.5 * iqr)
         lo      = max(0.0, float(q1 - 1.5 * iqr))
-        lap_df.loc[:, "Valid"] &= lap_df["LapTime_s"].between(lo, hi)
+        iqr_fail = ~lap_df["LapTime_s"].between(lo, hi)
+        lap_df.loc[iqr_fail, "Valid"] = False
 
-    # ── InvalidReason: human-readable explanation for each rejected lap ────
+    # ── Invalidation reason (verbose) ────────────────────────────────────
     def _reason(row) -> str:
         if row["Valid"]:
             return "OK"
         reasons = []
+        if row["StartPct"]       > max_start_pct:
+            reasons.append(f"StartPct={row['StartPct']:.3f}>{max_start_pct}")
+        if row["CompletedPct"]   < min_completed_pct:
+            reasons.append(f"CompletedPct={row['CompletedPct']:.3f}<{min_completed_pct}")
         if row["Lap"] in manual_invalid:
-            reasons.append("manual_exclusion")
-        if row["CompletedPct"] < min_completed_pct:
-            reasons.append(f"incomplete_lap({row['CompletedPct']:.1%})")
-        if row["LapTime_s"] < min_lap_time_s:
-            reasons.append(f"too_short({row['LapTime_s']:.1f}s)")
-        if row["LapTime_s"] > max_lap_time_s:
-            reasons.append(f"too_long({row['LapTime_s']:.1f}s)")
-        if row["FracLowSpeed"] > 0.25:
-            reasons.append(f"low_speed({row['FracLowSpeed']:.0%})")
-        if row["MaxSpeed_kph"] < min_max_speed_kph:
-            reasons.append(f"max_spd_low({row['MaxSpeed_kph']:.0f}kph)")
-        return " | ".join(reasons) if reasons else "iqr_outlier"
+            reasons.append("manual_invalid")
+        if row["FracLowSpeed"]   > 0.25:
+            reasons.append(f"FracLowSpeed={row['FracLowSpeed']:.2f}")
+        if row["MaxSpeed_kph"]   < min_max_speed_kph:
+            reasons.append(f"MaxSpeed={row['MaxSpeed_kph']:.1f}kph")
+        if not (min_lap_time_s <= row["LapTime_s"] <= max_lap_time_s):
+            reasons.append(f"LapTime={row['LapTime_s']:.1f}s")
+        if row["GpsCoverage_Pct"] < min_gps_coverage:
+            reasons.append(f"GPS={row['GpsCoverage_Pct']*100:.1f}%<100%")
+        return " | ".join(reasons) if reasons else "IQR_outlier"
 
     lap_df["InvalidReason"] = lap_df.apply(_reason, axis=1)
-    # ──────────────────────────────────────────────────────────────────────
+
+    # ── Console report ────────────────────────────────────────────────────
+    if verbose:
+        valid_laps   = lap_df[lap_df["Valid"]]
+        invalid_laps = lap_df[~lap_df["Valid"]]
+        fastest      = valid_laps.sort_values("LapTime_s").iloc[0] if not valid_laps.empty else None
+
+        print("─" * 62)
+        print(f"  Lap Validity Report  ({len(lap_df)} laps total)")
+        print("─" * 62)
+        print(f"  ✅ Valid   : {len(valid_laps)} laps")
+        if fastest is not None:
+            mins   = int(fastest['LapTime_s'] // 60)
+            secs   = fastest['LapTime_s'] % 60
+            print(f"  🏆 Fastest : Lap {int(fastest['Lap'])}  "
+                  f"({mins:02d}:{secs:06.3f})")
+        print(f"  ❌ Invalid : {len(invalid_laps)} laps")
+        for _, row in invalid_laps.iterrows():
+            mins = int(row['LapTime_s'] // 60)
+            secs = row['LapTime_s'] % 60
+            print(f"     Lap {int(row['Lap']):>3}  {mins:02d}:{secs:06.3f}  → {row['InvalidReason']}")
+        print("─" * 62)
 
     return lap_df
 
@@ -363,11 +438,20 @@ def select_reference_laps(
     fastest_row = valid_rows.sort_values("LapTime_s").iloc[0]
     fastest_lap = int(fastest_row["Lap"])
 
-    # GPS reference: prefer a valid lap with full coverage; fall back to any lap
-    if "GPS_Coverage" in validity.columns:
-        gps_lap = int(validity.sort_values("GPS_Coverage", ascending=False).iloc[0]["Lap"])
+    # GPS reference: lap with highest GpsCoverage_Pct (any lap, not just valid),
+    # so the track geometry is always complete even when the fastest lap has
+    # a data gap at the IBT file boundary.
+    GPS_COL = "GpsCoverage_Pct"
+    if GPS_COL in validity.columns:
+        gps_lap = int(
+            validity.sort_values(GPS_COL, ascending=False).iloc[0]["Lap"]
+        )
+        gps_cov = float(
+            validity.loc[validity["Lap"] == gps_lap, GPS_COL].values[0]
+        )
     else:
-        gps_lap = fastest_lap  # graceful fallback if column absent
+        gps_lap = fastest_lap   # graceful fallback if column absent
+        gps_cov = float("nan")
 
     if verbose:
         tag = f"[{driver_name}]" if driver_name else ""
@@ -380,13 +464,15 @@ def select_reference_laps(
         print(f"  🏁 Fastest lap   : Lap {fastest_lap}  "
               f"({fastest_row['LapTime_s']:.3f}s)")
         print(f"  🗺  GPS reference : Lap {gps_lap}  "
-              f"(GPS coverage {validity.loc[validity['Lap']==gps_lap, 'GPS_Coverage'].values[0]:.1%})")
+              f"(GPS coverage {gps_cov:.1%})")
 
         if not invalid_rows.empty:
             print(f"\n  ❌ Invalidated laps ({len(invalid_rows)}):")
             for _, r in invalid_rows.iterrows():
-                print(f"     Lap {int(r['Lap']):>3}  {r['LapTime_s']:>8.3f}s  "
-                      f"→  {r['InvalidReason']}")
+                mins = int(r['LapTime_s'] // 60)
+                secs = r['LapTime_s'] % 60
+                print(f"     Lap {int(r['Lap']):>3}  {mins:02d}:{secs:06.3f}"
+                      f"  →  {r.get('InvalidReason', '—')}")
         print(f"{'─'*55}\n")
 
     return fastest_lap, gps_lap
