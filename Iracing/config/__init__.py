@@ -11,7 +11,6 @@ from .ibt_loader    import (          # ← era "from telemetry import ..."
     assign_sectors,
     IRSDK_AVAILABLE,
     IBT_CHANNELS,
-    select_reference_laps,
     basic_clean_and_units,
 )
 
@@ -19,5 +18,5 @@ __all__ = [
     "TRACK_CONFIGS", "DATASETS", "DRIVER_ALIAS", "resolve_stint_files",
     "load_stint", "load_and_prepare_stint", "basic_clean_and_units",
     "build_lap_validity_table", "assign_sectors",
-    "IRSDK_AVAILABLE", "IBT_CHANNELS","select_reference_laps", "basic_clean_and_units"
+    "IRSDK_AVAILABLE", "IBT_CHANNELS", "basic_clean_and_units"
 ]
