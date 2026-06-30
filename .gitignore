@@ -3,3 +3,4 @@
 *.csv
 *.png
 *.pdf
+.Iracing/img/*.png
