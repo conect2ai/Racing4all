@@ -39,8 +39,10 @@ DATASETS: dict = {
                 "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2025-11-26 13-56-41.ibt",
                 "stint_2":[
                     "mx5 mx52016_charlotte 2025 roval2025 2026-03-01 17-16-27.ibt",
-                    "mx5 mx52016_charlotte 2025 roval2025 2026-03-01 16-20-04.ibt"
-                ],  
+                    "mx5 mx52016_charlotte 2025 roval2025 2026-03-01 16-20-04.ibt",
+                ],
+                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-05-11 22-43-15.ibt",
+                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-05-11 23-11-08.ibt",
             },
             "Morsinaldo": {
                 "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-01-27 16-13-55(Morsinaldo).ibt",

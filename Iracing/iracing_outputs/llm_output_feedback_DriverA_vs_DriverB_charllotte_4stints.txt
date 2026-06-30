@@ -1,0 +1,38 @@
+Bus Stop Apex (Δt = +0.354s)
+[1] Frenagem excessiva e pico de frenagem muito alto (83.2% vs. 57.9%). Você está travando as rodas ou sobrecarregando o ABS, o que causa perda de velocidade na saída. A velocidade mínima é 87 km/h, enquanto a referência é 93.7 km/h. [2] Reduza a pressão máxima do freio em 10-15% e tente uma técnica de "trail braking" mais suave. Isso permitirá que você mantenha a aderência e acelere mais cedo. Comece a liberar o freio 15m antes do ápice.
+
+New Hairpin (Δt = +0.324s)
+[1] Rotação tardia e velocidade de entrada mais lenta (56.7 km/h vs. 58.6 km/h). Você está esperando demais para girar o carro, o que o impede de atingir a velocidade ideal na saída. [2] Comece a girar o volante mais cedo na entrada da curva. Experimente um ângulo de entrada 5% mais agressivo.
+
+Hairpin Setup (Δt = +0.122s)
+[1] Pico de frenagem excessivo (38.1% vs. 27.5%) e conflito entre acelerador e volante. Você está "ancorando" demais o carro, o que compromete a tração. [2] Reduza a pressão máxima do freio em 10% e libere o volante um pouco mais cedo para permitir que o carro gire mais livremente.
+
+Final Chicane Entry (Δt = +0.096s)
+[1] Pico de frenagem excessivo (73.4% vs. 70.1%). [2] Reduza a pressão máxima do freio em 5-10%.
+
+T5/T6 Transition (Δt = +0.093s)
+[1] Conflito entre acelerador e volante. [2] Libere o volante um pouco mais cedo para permitir que o carro gire mais livremente.
+
+Bus Stop Exit (Δt = +0.075s)
+[1] Rotação tardia. [2] Comece a girar o volante mais cedo na entrada da curva.
+
+
+###########################################################
+Stint 3
+
+New Hairpin (Δt = +0.581s)
+[1] Pico de frenagem excessivo: Você está "ancorando" demais o carro, resultando em uma perda de 15 km/h na velocidade mínima em comparação com a referência. Isso também está relacionado à sua entrada 8 km/h mais lenta. [2] Reduza a pressão máxima do freio em 14% (de 76.5% para 62.5%) para manter a suspensão mais estável e permitir uma entrada mais rápida. Comece a liberar o freio 15m antes do ponto de frenagem atual.
+
+T2 (Δt = +0.221s)
+[1] Frenagem ineficiente e subesterço: Você está aplicando muita pressão de freio para pouca desaceleração, e o subesterço está limitando a rotação. A velocidade de entrada é 11 km/h mais lenta que a referência. [2] Tente diminuir a pressão do freio e aplicar menos ângulo de esterçamento na entrada da curva. Experimente uma técnica de "trail braking" mais suave para controlar a desaceleração e a rotação.
+
+Bus Stop Apex (Δt = +0.219s)
+[1] Rotação atrasada e pico de frenagem excessivo: Você está atingindo o pico de rotação após o ápice da curva, e está "ancorando" demais o carro. A velocidade mínima é 3 km/h mais lenta que a referência. [2] Comece a rotacionar o carro mais cedo na entrada da curva. Reduza a pressão máxima do freio em 4% (de 62.9% para 58.9%) para melhorar a aderência e permitir uma rotação mais rápida.
+
+Final Chicane Entry (Δt = +0.194s)
+[1] Pico de frenagem excessivo e entrada lenta: Você está "ancorando" demais o carro, resultando em uma velocidade de entrada 11 km/h mais lenta que a referência. [2] Reduza a pressão máxima do freio em 7% (de 78.8% para 71.1%) para manter a suspensão mais estável e permitir uma entrada mais rápida.
+
+T5/T6 Transition (Δt = +0.141s)
+[1] Rotação atrasada: Você está atingindo o pico de rotação após o ápice da curva. [2] Comece a rotacionar o carro mais cedo na entrada da curva.
+
+##################################################
