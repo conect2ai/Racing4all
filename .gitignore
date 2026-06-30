@@ -1,6 +1,9 @@
 .vscode/settings.json
 *.pyc
+<<<<<<< HEAD
 *.csv
 *.png
 *.pdf
 .Iracing/img/*.png
+=======
+>>>>>>> 9444ca1688d3b519b010ee4674bec2bdfcd98269
