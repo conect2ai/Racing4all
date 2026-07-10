@@ -11,4 +11,5 @@ DRIVER_ALIAS: dict[str, str] = {
     "Rodrigo":    "Driver A",
     "Tomaz":      "Driver B",
     "Morsinaldo": "Driver C",
+    "Thallys":    "Driver D",
 }

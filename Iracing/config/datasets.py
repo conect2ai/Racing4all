@@ -53,6 +53,14 @@ DATASETS: dict = {
                 # Both files are now a single list → loader concatenates them.
                 "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-02-08 15-06-22(Rodrigo).ibt",
             },
+            "Thallys": {
+                "warmup": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 19-43-55(aquecimento).ibt",
+                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 19-54-22(Thallys-stint1).ibt",
+                "stint_2": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 20-24-18(Thallys-stint2).ibt",
+                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 20-59-35(Thallys-stint3).ibt",
+                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 21-17-46(Thallys-stint4).ibt",
+                "stint_5": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 21-38-37(Thallys-stint5).ibt",
+            },
         },
     },
 
@@ -77,6 +85,15 @@ DATASETS: dict = {
                     "toyotagr86_summit summit raceway 2026-03-01 22-00-14(Rodrigo).ibt",
                     "toyotagr86_summit summit raceway 2026-03-01 21-47-29(Rodrigo).ibt",
                 ],
+            },
+            "Thallys": {
+                "aquecimento": "toyotagr86_summit summit raceway 2026-07-06 20-19-23(Thallys-aquecimento).ibt",
+                "stint_1": "toyotagr86_summit summit raceway 2026-07-06 20-30-59(Thallys-stint1).ibt",
+                "stint_2": "toyotagr86_summit summit raceway 2026-07-06 20-58-37(Thallys-stint2).ibt",
+                "stint_3": "toyotagr86_summit summit raceway 2026-07-06 21-18-41(Thallys-stint3).ibt",
+                "stint_4": "toyotagr86_summit summit raceway 2026-07-06 21-48-51(Thallys-stint4).ibt",
+                "stint_5": "toyotagr86_summit summit raceway 2026-07-06 22-01-39(Thallys-stint5).ibt",
+
             },
         },
     },
