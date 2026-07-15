@@ -61,6 +61,14 @@ DATASETS: dict = {
                 "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 21-17-46(Thallys-stint4).ibt",
                 "stint_5": "mx5 mx52016_charlotte 2025 roval2025 2026-07-01 21-38-37(Thallys-stint5).ibt",
             },
+            "Igor": {
+                "warmup": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 14-33-08(igor-aquecimento).ibt",
+                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 14-53-43(igor-stint1).ibt",
+                "stint_2": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 15-15-18(igor-stint2).ibt",
+                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 15-36-02(igor-stint3).ibt",
+                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 15-43-42(igor-stint4).ibt",
+                "stint_5": "mx5 mx52016_charlotte 2025 roval2025 2026-07-11 15-58-02(igor-stint5).ibt",
+            },
         },
     },
 
@@ -94,6 +102,14 @@ DATASETS: dict = {
                 "stint_4": "toyotagr86_summit summit raceway 2026-07-06 21-48-51(Thallys-stint4).ibt",
                 "stint_5": "toyotagr86_summit summit raceway 2026-07-06 22-01-39(Thallys-stint5).ibt",
 
+            },
+            "Igor": {
+                "warmup": "toyotagr86_summit summit raceway 2026-07-11 16-39-19(igor-aquecimento).ibt",
+                "stint_1": "toyotagr86_summit summit raceway 2026-07-11 16-49-26(igor-stint1).ibt",
+                "stint_2": "toyotagr86_summit summit raceway 2026-07-11 17-00-33(igor-stint2).ibt",
+                "stint_3": "toyotagr86_summit summit raceway 2026-07-11 17-08-30(igor-stint3).ibt",
+                "stint_4": "toyotagr86_summit summit raceway 2026-07-11 17-16-52(igor-stint4).ibt",
+                "stint_5": "toyotagr86_summit summit raceway 2026-07-11 17-38-46(igor-stint5).ibt",
             },
         },
     },
