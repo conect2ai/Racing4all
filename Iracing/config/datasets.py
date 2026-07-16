@@ -98,6 +98,7 @@ DATASETS: dict = {
                 "stint_3": "toyotagr86_summit summit raceway 2026-07-16 18-08-13(Tomaz-stint3).ibt",
                 "stint_4": "toyotagr86_summit summit raceway 2026-07-16 18-26-28(Tomaz-stint4).ibt",
                 "stint_5": "toyotagr86_summit summit raceway 2026-07-16 18-39-20(Tomaz-stint5).ibt",
+                "stint_ref": "toyotagr86_summit summit raceway 2026-01-27 22-21-35(Tomaz-stint_ref).ibt",
             },
             "Morsinaldo": {
                 "stint_1": "toyotagr86_summit summit raceway 2026-07-06 16-03-42(morsinaldo-stint1).ibt",
