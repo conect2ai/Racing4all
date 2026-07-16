@@ -45,8 +45,12 @@ DATASETS: dict = {
                 "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-05-11 23-11-08.ibt",
             },
             "Morsinaldo": {
-                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-01-27 16-13-55(Morsinaldo).ibt",
-                "stint_2": "mx5 mx52016_charlotte 2025 roval2025 2026-01-28 15-24-41(Morsinaldo).ibt",
+                "warmp-up": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-02-02(Morsinaldo-aquecimento).ibt",
+                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-23-22(Morsinaldo-stint1).ibt",
+                "stint_2":"mx5 mx52016_charlotte 2025 roval2025 2026-07-03 17-26-36(Morsinaldo-stint2).ibt",
+                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 17-54-10(Morsinaldo-stint3).ibt",
+                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 18-06-38(Morsinaldo-stint4).ibt",
+                "stint_5": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 18-20-07(Morsinaldo-stint5).ibt"
             },
             "Rodrigo": {
                 # Previously, two stint_1 keys caused silent data loss.
@@ -91,8 +95,11 @@ DATASETS: dict = {
                 "stint_1": "toyotagr86_summit summit raceway 2026-01-27 22-21-35.ibt",
             },
             "Morsinaldo": {
-                "stint_1": "toyotagr86_summit summit raceway 2026-01-28 16-03-13(Morsinaldo).ibt",
-                "stint_2": "toyotagr86_summit summit raceway 2026-01-30 08-56-59(Morsinaldo).ibt",
+                "stint_1": "toyotagr86_summit summit raceway 2026-07-06 16-03-42(morsinaldo-stint1).ibt",
+                "stint_2": "toyotagr86_summit summit raceway 2026-07-06 16-25-28(morsinaldo-stint2).ibt",
+                "stint_3": "toyotagr86_summit summit raceway 2026-07-06 16-38-47(morsinaldo-stint3).ibt",
+                "stint_4": "toyotagr86_summit summit raceway 2026-07-06 17-01-50(morsinaldo-stint4).ibt",
+                "stint_5": "toyotagr86_summit summit raceway 2026-07-06 17-13-21(morsinaldo-stint5).ibt",
             },
             "Rodrigo": {
                 # FIX: both files that previously shared the "stint_1" key
