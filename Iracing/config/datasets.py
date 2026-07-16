@@ -92,7 +92,12 @@ DATASETS: dict = {
         "car":       "Toyota GR86",
         "sessions": {
             "Tomaz": {
-                "stint_1": "toyotagr86_summit summit raceway 2026-01-27 22-21-35.ibt",
+                "warmup":  "toyotagr86_summit summit raceway 2026-07-16 17-18-40(Tomaz-aquecimento).ibt",
+                "stint_1": "toyotagr86_summit summit raceway 2026-07-16 17-32-50(Tomaz-stint1).ibt",
+                "stint_2": "toyotagr86_summit summit raceway 2026-07-16 17-53-00(Tomaz-stint2).ibt",
+                "stint_3": "toyotagr86_summit summit raceway 2026-07-16 18-08-13(Tomaz-stint3).ibt",
+                "stint_4": "toyotagr86_summit summit raceway 2026-07-16 18-26-28(Tomaz-stint4).ibt",
+                "stint_5": "toyotagr86_summit summit raceway 2026-07-16 18-39-20(Tomaz-stint5).ibt",
             },
             "Morsinaldo": {
                 "stint_1": "toyotagr86_summit summit raceway 2026-07-06 16-03-42(morsinaldo-stint1).ibt",
