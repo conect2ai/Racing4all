@@ -45,7 +45,7 @@ DATASETS: dict = {
                 "stint_ref": "mx5 mx52016_charlotte 2025 roval2025 2025-11-26 13-56-41.ibt",
             },
             "Morsinaldo": {
-                "warmp-up": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-02-02(Morsinaldo-aquecimento).ibt",
+                "warmup": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-02-02(Morsinaldo-aquecimento).ibt",
                 "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-23-22(Morsinaldo-stint1).ibt",
                 "stint_2":"mx5 mx52016_charlotte 2025 roval2025 2026-07-03 17-26-36(Morsinaldo-stint2).ibt",
                 "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 17-54-10(Morsinaldo-stint3).ibt",
@@ -116,7 +116,7 @@ DATASETS: dict = {
                 ],
             },
             "Thallys": {
-                "aquecimento": "toyotagr86_summit summit raceway 2026-07-06 20-19-23(Thallys-aquecimento).ibt",
+                "warmup": "toyotagr86_summit summit raceway 2026-07-06 20-19-23(Thallys-aquecimento).ibt",
                 "stint_1": "toyotagr86_summit summit raceway 2026-07-06 20-30-59(Thallys-stint1).ibt",
                 "stint_2": "toyotagr86_summit summit raceway 2026-07-06 20-58-37(Thallys-stint2).ibt",
                 "stint_3": "toyotagr86_summit summit raceway 2026-07-06 21-18-41(Thallys-stint3).ibt",
