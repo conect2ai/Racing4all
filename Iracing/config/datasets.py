@@ -36,13 +36,13 @@ DATASETS: dict = {
         "car":       "Mazda MX-5",
         "sessions": {
             "Tomaz": {
-                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2025-11-26 13-56-41.ibt",
-                "stint_2":[
-                    "mx5 mx52016_charlotte 2025 roval2025 2026-03-01 17-16-27.ibt",
-                    "mx5 mx52016_charlotte 2025 roval2025 2026-03-01 16-20-04.ibt",
-                ],
-                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-05-11 22-43-15.ibt",
-                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-05-11 23-11-08.ibt",
+                "warmup": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 18-22-34(Tomaz-warmup).ibt",
+                "stint_1": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 18-30-08(Tomaz-stint1).ibt",
+                "stint_2": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 18-47-14(Tomaz-stint2).ibt",
+                "stint_3": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 19-01-52(Tomaz-stint3).ibt",
+                "stint_4": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 19-14-44(Tomaz-stint4).ibt",
+                "stint_5": "mx5 mx52016_charlotte 2025 roval2025 2026-07-20 19-27-49(Tomaz-stint5).ibt",
+                "stint_ref": "mx5 mx52016_charlotte 2025 roval2025 2025-11-26 13-56-41.ibt",
             },
             "Morsinaldo": {
                 "warmp-up": "mx5 mx52016_charlotte 2025 roval2025 2026-07-03 15-02-02(Morsinaldo-aquecimento).ibt",
