@@ -2,3 +2,6 @@
 *.pyc
 __pycache__/
 .ipynb_checkpoints/
+
+# Analysis outputs (figures/csv) stay local only, not on GitHub
+Iracing/img/
