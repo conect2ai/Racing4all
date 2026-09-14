@@ -5,3 +5,9 @@ __pycache__/
 
 # Analysis outputs (figures/csv) stay local only, not on GitHub
 Iracing/img/
+
+# POC threshold validation: telemetry-derived cache and blind panels stay
+# local only (regenerable from the .ibt originals + 00_core.ipynb).
+# blind_map.csv, labels_poc.csv and results/ ARE versioned on purpose.
+Iracing/data/poc_threshold_validation/cache/
+Iracing/data/poc_threshold_validation/panels/
