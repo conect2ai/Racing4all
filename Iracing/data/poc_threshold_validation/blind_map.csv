@@ -1,37 +1,37 @@
-hash,Track,Comparison,Stint,Sector,N_Act,BRAKING_POINT_MISMATCH,OVER_BRAKING_PEAK,AGGRESSIVE_UNSTABLE_BRAKE,ENTRY_OVER_SLOW,LATE_ROTATION,POOR_TRAIL_BRAKING,STEER_EFFICIENCY,THROTTLE_STEER_CONFLICT,LATE_THROTTLE_LOW_SPEED,EXIT_SPEED_LEGACY
-06d625b7a1,CLT,B vs. B (self),stint_1,4,0,0,0,0,0,0,0,0,0,0,0
-0a8083f0a6,CLT,C vs. B,stint_1,9,0,0,0,0,0,0,0,0,0,0,0
-0f842174b6,CLT,C vs. B,stint_1,10,2,0,0,1,1,0,0,0,0,0,0
-11e8539e88,CLT,B vs. B (self),stint_1,17,1,0,0,0,0,1,0,0,0,0,0
-1f39da568d,CLT,C vs. B,stint_1,14,2,0,0,0,0,1,1,0,0,0,0
-293ac69bbb,CLT,B vs. B (self),stint_1,9,1,0,0,0,0,1,0,0,0,0,0
-2a66aee4a2,CLT,C vs. B,stint_1,3,1,1,0,0,0,0,0,0,0,0,0
-2ce282fdb5,CLT,C vs. B,stint_1,6,3,0,1,1,0,1,0,0,0,0,0
-38a77e2b74,CLT,B vs. B (self),stint_1,5,2,0,0,0,0,0,0,1,0,1,0
-3ba12a68d8,CLT,B vs. B (self),stint_1,13,1,0,0,0,0,1,0,0,0,0,0
-4ab8c7c109,CLT,B vs. B (self),stint_1,6,2,0,0,0,1,0,0,0,1,0,0
-5513c99752,CLT,B vs. B (self),stint_1,2,1,0,0,0,0,1,0,0,0,0,0
-5646259f38,CLT,B vs. B (self),stint_1,8,1,0,0,0,0,1,0,0,0,0,0
-635b138118,CLT,B vs. B (self),stint_1,15,4,0,0,0,1,0,0,1,1,1,0
-651d41d38a,CLT,C vs. B,stint_1,7,3,0,0,0,0,1,0,1,1,0,0
-6e4d0595e1,CLT,C vs. B,stint_1,2,3,0,0,0,1,1,1,0,0,0,0
-7004a66ff5,CLT,C vs. B,stint_1,16,2,0,0,0,0,0,0,0,1,0,1
-731e16cb09,CLT,B vs. B (self),stint_1,3,3,1,0,0,1,0,0,0,0,1,0
-75e6657d40,CLT,B vs. B (self),stint_1,14,1,0,0,0,0,1,0,0,0,0,0
-8c7a89a28f,CLT,B vs. B (self),stint_1,12,0,0,0,0,0,0,0,0,0,0,0
-8e5f6ffe34,CLT,C vs. B,stint_1,1,3,0,1,0,1,0,0,0,0,1,0
-8f8d6021af,CLT,B vs. B (self),stint_1,10,0,0,0,0,0,0,0,0,0,0,0
-9501329f4c,CLT,B vs. B (self),stint_1,7,2,0,0,0,0,1,0,0,1,0,0
-9929f1c2e4,CLT,B vs. B (self),stint_1,1,3,0,0,0,1,0,1,0,0,1,0
-9ea06d6d91,CLT,B vs. B (self),stint_1,0,1,0,0,0,0,1,0,0,0,0,0
-b79e9b2eb4,CLT,C vs. B,stint_1,4,1,0,0,0,0,1,0,0,0,0,0
-b81c5db58b,CLT,C vs. B,stint_1,0,3,0,0,0,1,1,1,0,0,0,0
-bae2303733,CLT,B vs. B (self),stint_1,16,2,0,0,0,0,1,0,0,0,0,1
-bcea29fad2,CLT,B vs. B (self),stint_1,11,1,0,0,0,0,0,0,0,1,0,0
-bd2835a60f,CLT,C vs. B,stint_1,8,1,0,0,0,0,1,0,0,0,0,0
-c8fe76ba0f,CLT,C vs. B,stint_1,15,6,0,1,1,1,0,0,1,1,1,0
-ca737d24fb,CLT,C vs. B,stint_1,5,3,1,0,0,1,0,0,0,0,1,0
-cf186bf106,CLT,C vs. B,stint_1,11,3,0,1,0,0,0,0,1,1,0,0
-e4c760a359,CLT,C vs. B,stint_1,13,1,0,0,0,0,1,0,0,0,0,0
-f4d89e34bc,CLT,C vs. B,stint_1,17,2,0,0,0,0,1,0,0,0,0,1
-f9105d06e1,CLT,C vs. B,stint_1,12,1,0,0,0,0,1,0,0,0,0,0
+hash,Track,Comparison,Stint,Sector,N_Act,BRAKING_POINT_MISMATCH,OVER_BRAKING_PEAK,AGGRESSIVE_UNSTABLE_BRAKE,ENTRY_OVER_SLOW,LATE_ROTATION,POOR_TRAIL_BRAKING,STEER_EFFICIENCY,THROTTLE_STEER_CONFLICT,LATE_THROTTLE_LOW_SPEED,EXIT_SPEED_LEGACY,SpeedStartDiff_kmh
+06d625b7a1,CLT,B vs. B (self),stint_1,4,0,0,0,0,0,0,0,0,0,0,0,-1.6888794923402486
+0a8083f0a6,CLT,C vs. B,stint_1,9,0,0,0,0,0,0,0,0,0,0,0,0.23932660598481448
+0f842174b6,CLT,C vs. B,stint_1,10,2,0,0,1,1,0,0,0,0,0,0,0.3770741678973195
+11e8539e88,CLT,B vs. B (self),stint_1,17,1,0,0,0,0,1,0,0,0,0,0,-0.6011332089045567
+1f39da568d,CLT,C vs. B,stint_1,14,2,0,0,0,0,1,1,0,0,0,0,-0.09756690796385215
+293ac69bbb,CLT,B vs. B (self),stint_1,9,1,0,0,0,0,1,0,0,0,0,0,-0.1803578306864324
+2a66aee4a2,CLT,C vs. B,stint_1,3,1,1,0,0,0,0,0,0,0,0,0,-0.06848304601396649
+2ce282fdb5,CLT,C vs. B,stint_1,6,3,0,1,1,0,1,0,0,0,0,0,-11.1662615923521
+38a77e2b74,CLT,B vs. B (self),stint_1,5,2,0,0,0,0,0,0,1,0,1,0,-0.8104955317895417
+3ba12a68d8,CLT,B vs. B (self),stint_1,13,1,0,0,0,0,1,0,0,0,0,0,1.5653534421587096
+4ab8c7c109,CLT,B vs. B (self),stint_1,6,2,0,0,0,1,0,0,0,1,0,0,-5.359656730293068
+5513c99752,CLT,B vs. B (self),stint_1,2,1,0,0,0,0,1,0,0,0,0,0,-1.8209181401725232
+5646259f38,CLT,B vs. B (self),stint_1,8,1,0,0,0,0,1,0,0,0,0,0,-0.29049407276090733
+635b138118,CLT,B vs. B (self),stint_1,15,4,0,0,0,1,0,0,1,1,1,0,-1.2638331039394473
+651d41d38a,CLT,C vs. B,stint_1,7,3,0,0,0,0,1,0,1,1,0,0,0.5383888604630584
+6e4d0595e1,CLT,C vs. B,stint_1,2,3,0,0,0,1,1,1,0,0,0,0,-5.336065012565257
+7004a66ff5,CLT,C vs. B,stint_1,16,2,0,0,0,0,0,0,0,1,0,1,-12.316480338088596
+731e16cb09,CLT,B vs. B (self),stint_1,3,3,1,0,0,1,0,0,0,0,1,0,6.257157896037171
+75e6657d40,CLT,B vs. B (self),stint_1,14,1,0,0,0,0,1,0,0,0,0,0,0.05212242808468659
+8c7a89a28f,CLT,B vs. B (self),stint_1,12,0,0,0,0,0,0,0,0,0,0,0,4.0609833656129695
+8e5f6ffe34,CLT,C vs. B,stint_1,1,3,0,1,0,1,0,0,0,0,1,0,-5.054396639473481
+8f8d6021af,CLT,B vs. B (self),stint_1,10,0,0,0,0,0,0,0,0,0,0,0,-0.2118599287869074
+9501329f4c,CLT,B vs. B (self),stint_1,7,2,0,0,0,0,1,0,0,1,0,0,1.9791632139392448
+9929f1c2e4,CLT,B vs. B (self),stint_1,1,3,0,0,0,1,0,1,0,0,1,0,4.554464300335923
+9ea06d6d91,CLT,B vs. B (self),stint_1,0,1,0,0,0,0,1,0,0,0,0,0,0.43121337890625
+b79e9b2eb4,CLT,C vs. B,stint_1,4,1,0,0,0,0,1,0,0,0,0,0,2.429665307946806
+b81c5db58b,CLT,C vs. B,stint_1,0,3,0,0,0,1,1,1,0,0,0,0,-4.381169128417966
+bae2303733,CLT,B vs. B (self),stint_1,16,2,0,0,0,0,1,0,0,0,0,1,-5.90128205519386
+bcea29fad2,CLT,B vs. B (self),stint_1,11,1,0,0,0,0,0,0,0,1,0,0,3.284814366629078
+bd2835a60f,CLT,C vs. B,stint_1,8,1,0,0,0,0,1,0,0,0,0,0,0.02236249294492154
+c8fe76ba0f,CLT,C vs. B,stint_1,15,6,0,1,1,1,0,0,1,1,1,0,2.5798287604828545
+ca737d24fb,CLT,C vs. B,stint_1,5,3,1,0,0,1,0,0,0,0,1,0,1.2719765772054643
+cf186bf106,CLT,C vs. B,stint_1,11,3,0,1,0,0,0,0,1,1,0,0,-5.678267709963677
+e4c760a359,CLT,C vs. B,stint_1,13,1,0,0,0,0,1,0,0,0,0,0,1.401039295294936
+f4d89e34bc,CLT,C vs. B,stint_1,17,2,0,0,0,0,1,0,0,0,0,1,-5.232697036939157
+f9105d06e1,CLT,C vs. B,stint_1,12,1,0,0,0,0,1,0,0,0,0,0,3.8348225867067356
